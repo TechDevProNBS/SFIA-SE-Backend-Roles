@@ -1,5 +1,6 @@
 console.log('running');
 
+//Importing required modules
 let express = require('express');
 let bodyparser = require('body-parser');
 let mongodb = require('mongodb');
@@ -21,22 +22,10 @@ app.use(bodyparser.urlencoded({ extended: true }));
 let dbName = database.name;
 let dbCollection = database.collection;
 
-//TESTING GET NOT IN FINAL
-app.get('/API/get', function (req, res) {
-    mongo.connect(url, function (err, client) {
-        if (err) throw err;
-        db = client.db(dbName);
-        db.collection(dbCollection).find().toArray(function (err, result) {
-            if (err) throw err;
-            res.send(result);
-        });
-        client.close();
-    });
-});
-
-app.get('/API/getRoleByName/:name', function (req, res) {
+//Get request to return roles based on role name from the request.
+app.get('/API/getRoleByName/:roleName', function (req, res) {
     let data = {
-        name: req.params.name
+        role_name: req.params.roleName
     }
     mongo.connect(url, function (err, client) {
         if (err) throw err;
@@ -49,6 +38,7 @@ app.get('/API/getRoleByName/:name', function (req, res) {
     });
 });
 
+//Post request to create roles. Expects JSON for data.
 app.post('/API/postRole', function (req, res) {
     let data = req.body;
     mongo.connect(url, function (err, client) {
@@ -69,9 +59,10 @@ app.post('/API/postRole', function (req, res) {
     });
 });
 
-app.delete('/API/deleteRole/:id', function (req, res) {
+//Delete request to delete roles based on role name from URL.
+app.delete('/API/deleteRole/:roleName', function (req, res) {
     let data = {
-        _id: new mongodb.ObjectID(req.params.id)
+        role_name: req.params.roleName
     }
     mongo.connect(url, function (err, client) {
         if (err) {
@@ -89,15 +80,13 @@ app.delete('/API/deleteRole/:id', function (req, res) {
     });
 });
 
+//Put request to update roles based on role name from URL. Expects JSON for data.
 app.put('/API/putRole/:name', function (req, res) {
-    let data = req.body
-    console.log(data);
+    let data = req.body;
     
     let original = {
-        name: req.params.name
+        role_name: req.params.name
     }
-    console.log(original);
-    
 
     mongo.connect(url, function (err, client) {
         if (err) {

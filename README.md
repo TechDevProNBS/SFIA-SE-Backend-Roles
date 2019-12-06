@@ -1,10 +1,10 @@
 # SFIA-SE-Backend-Roles
 The Backend Microservice used to GET request SFIA information for responsibilities and skills
 
-/getRoleById?id={id} - gets all ids of skills required for a role in a json format
-/postrole -  uploads a new role to the database with all skill ids
-/putrole - updates the required skills for a role in the database
-/deleterole?id={id} - deletes a role in the database via its id
+/API/getRoleByName/:roleName - gets all roles by role name given in a json format
+/API/postrole -  uploads a new role to the database with all skills
+/API/putRole/:roleName - updates the required skills for a role in the database via role name given
+/API/deleteRole/:roleName - deletes a role in the database via role name
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
