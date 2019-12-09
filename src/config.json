@@ -1,5 +1,6 @@
 {
-    "currentProfile": "development",
+    "currentProfile": "testing",
+
     "development": {
         "config_id": "development",
         "app_name": "my app",
@@ -12,24 +13,59 @@
         "json_indentation": 4,
         "database": {
             "name": "willsmells",
-            "collection": "notnice",
+            "collection": "",
             "host": "localhost",
-            "user": "Neel",
-            "password": "aJzQhYm0mG6TrAsL"
+            "user": "",
+            "password": ""
         }
     },
+
     "testing": {
-        "config_id": "development",
         "app_name": "my app",
         "app_desc": "my app desc",
-        "node_port": 3000,
+        "node_port_role_backend": 2000,
+        "node_port_report_backend": 2500,
+        "sb_port_resp_backend": 3500,
+        "sb_port_list_backend": 4500,
+        "sb_port_level_backend": 5500,
         "json_indentation": 4,
-        "database": {
+        "reports_database": {
             "name": "nationwide",
+            "collection": "reports",
             "host": "localhost",
-            "user": "root"
+            "user": "reports",
+            "password": "UOJpJfSf4uEJjBrf"
+        },
+        "responsibilities_database": {
+            "name": "nationwide",
+            "collection": "responsibilities",
+            "host": "localhost",
+            "user": "responsibilities",
+            "password": "Tw78zrbaTkQjs6aQ"
+        },
+        "roles_database": {
+            "name": "nationwide",
+            "collection": "roles",
+            "host": "localhost",
+            "user": "roles",
+            "password": "aL0csqSN7YZhyNbF"
+        },
+        "skill_level_database": {
+            "name": "nationwide",
+            "collection": "skill_level",
+            "host": "localhost",
+            "user": "skill_level",
+            "password": "V9ZgIOBImLGBJtIm"
+        },
+        "skill_list_database": {
+            "name": "nationwide",
+            "collection": "skill_list",
+            "host": "localhost",
+            "user": "skill_list",
+            "password": "9axGost2CrxL0Cx6"
         }
     },
+
     "staging": {
         "config_id": "development",
         "app_name": "my app",
@@ -42,6 +78,7 @@
             "user": "root"
         }
     },
+    
     "production": {
         "config_id": "development",
         "app_name": "my app",
