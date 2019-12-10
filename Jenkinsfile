@@ -3,21 +3,28 @@ pipeline {
 
     stages {
         stage('Testing Environment') {
+	  when {
+		expression {
+			env.BRANCH_NAME=='developer'
+		}
+	}
             steps {
-            echo "Testing env"
+            echo "Testing environment"
                 }
             }
-        stage('Build') {
+
+
+        stage('Staging') {
+	  when {
+		expression {
+			env.BRANCH_NAME=='staging'
+		}
+	}
             steps {
                  echo "build"
                 }
             }
-        stage('Deploy') {
-            steps {
-                echo "deploy"
-            }
-        }
-    
+
 
       stage('Production') {
 	when {
@@ -26,9 +33,11 @@ pipeline {
 		}
 	}
             steps {
-               sh 'docker image build -t="sebs2112/sfia-roles:latest" .'
-                sh 'docker push sebs2112/sfia-roles:latest'  
+		echo "production"
+               sh 'docker image build --build-arg ENVIRON1="production" -t="sebs2112/sfia-roles:production" .'
+                sh 'docker push sebs2112/sfia-roles:production'  
             }
         }
 }
 }
+
