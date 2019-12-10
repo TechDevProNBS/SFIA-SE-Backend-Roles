@@ -9,7 +9,9 @@ pipeline {
 		}
 	}
             steps {
-            echo "Testing environment"
+            echo "Testing"
+		sh 'docker image build --build-arg ENVIRON1="testing" -t="sebs2112/sfia-roles:testing" .'
+                sh 'docker push sebs2112/sfia-roles:testing' 
                 }
             }
 
@@ -21,7 +23,9 @@ pipeline {
 		}
 	}
             steps {
-                 echo "build"
+		sh 'docker image build --build-arg ENVIRON1="staging" -t="sebs2112/sfia-roles:staging" .'
+                sh 'docker push sebs2112/sfia-roles:staging' 
+                 echo "staging"
                 }
             }
 
@@ -35,9 +39,8 @@ pipeline {
             steps {
 		echo "production"
                sh 'docker image build --build-arg ENVIRON1="production" -t="sebs2112/sfia-roles:production" .'
-                sh 'docker push sebs2112/sfia-roles:production'  
+                sh 'docker push sebs2112/sfia-roles:production' 
             }
         }
 }
 }
-
