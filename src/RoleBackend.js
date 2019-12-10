@@ -10,7 +10,7 @@ let bodyparser = require('body-parser');
 let mongo = require('mongodb').MongoClient;
 
 let allConfig = require('./config.json');
-let profile = allConfig.currentProfile;
+let profile = process.env.ENVIRON || allConfig.currentProfile;
 let config = allConfig[profile];
 
 /**
@@ -29,6 +29,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 let dbName = database.name;
 let dbCollection = database.collection;
 
+/**
+ * Get request to return all roles.
+ */
 app.get('/API/get', function (req, res) {
     mongo.connect(url, function (err, client) {
         if (err) throw err;
