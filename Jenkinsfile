@@ -26,7 +26,7 @@ pipeline {
 		sh 'docker image build --build-arg ENVIRON1="staging" -t="sebs2112/sfia-roles:staging" .'
                 sh 'docker push sebs2112/sfia-roles:staging' 
                  echo "staging"
-                }
+                } 
             }
 
 
