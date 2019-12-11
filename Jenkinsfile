@@ -11,8 +11,8 @@ pipeline {
             steps {
             echo "Testing"
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
-		sh 'docker image build --build-arg ENVIRON1="testing" -t="10.0.5.4:5000/sfia-roles:testing" .'
-                sh 'docker push 10.0.5.4:5000/sfia-roles:testing'
+		sh 'sudo docker image build --build-arg ENVIRON1="testing" -t="10.0.5.4:5000/sfia-roles:testing" .'
+                sh 'sudo docker push 10.0.5.4:5000/sfia-roles:testing'
 		sh '/home/manager/terraform-azure/backEndUpdate.sh'
                 }
             }
@@ -26,8 +26,8 @@ pipeline {
 	}
             steps {
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
-		sh 'docker image build --build-arg ENVIRON1="staging" -t="10.0.5.4:5000/sfia-roles:staging" .'
-                sh 'docker push 10.0.5.4:5000/sfia-roles:staging' 
+		sh 'sudo docker image build --build-arg ENVIRON1="staging" -t="10.0.5.4:5000/sfia-roles:staging" .'
+                sh 'sudo docker push 10.0.5.4:5000/sfia-roles:staging' 
 		sh '/home/manager/terraform-azure/backEndUpdate.sh'
                  echo "staging"
                 } 
@@ -43,8 +43,8 @@ pipeline {
             steps {
 		echo "production"
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
-                sh 'docker image build --build-arg ENVIRON1="production" -t="10.0.5.4:5000/sfia-roles:production" .'
-                sh 'docker push 10.0.5.4:5000/sfia-roles:production' 
+                sh 'sudo docker image build --build-arg ENVIRON1="production" -t="10.0.5.4:5000/sfia-roles:production" .'
+                sh 'sudo docker push 10.0.5.4:5000/sfia-roles:production' 
 		sh '/home/manager/terraform-azure/backEndUpdate.sh'
             }
         }
