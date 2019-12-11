@@ -32,7 +32,7 @@ let dbCollection = database.collection;
 /**
  * Get request to return all roles.
  */
-app.get('/API/get', function (req, res) {
+app.get('/API/roles/get', function (req, res) {
     mongo.connect(url, function (err, client) {
         if (err) throw err;
         db = client.db(dbName);
@@ -47,7 +47,7 @@ app.get('/API/get', function (req, res) {
 /**
  * Get request to return roles based on role name from the request.
  */
-app.get('/API/getRoleByName/:roleName', function (req, res) {
+app.get('/API/roles/getRoleByName/:roleName', function (req, res) {
     let data = {
         role_name: req.params.roleName
     }
@@ -65,7 +65,7 @@ app.get('/API/getRoleByName/:roleName', function (req, res) {
 /**
  * Post request to create roles. Expects JSON for data.
  */
-app.post('/API/postRole', function (req, res) {
+app.post('/API/roles/postRole', function (req, res) {
     let data = req.body;
     mongo.connect(url, function (err, client) {
         if (err) {
@@ -88,7 +88,7 @@ app.post('/API/postRole', function (req, res) {
 /**
  * Delete request to delete roles based on role name from URL.
  */
-app.delete('/API/deleteRole/:roleName', function (req, res) {
+app.delete('/API/roles/deleteRole/:roleName', function (req, res) {
     let data = {
         role_name: req.params.roleName
     }
@@ -111,7 +111,7 @@ app.delete('/API/deleteRole/:roleName', function (req, res) {
 /**
  * Put request to update roles based on role name from URL. Expects JSON for data.
  */
-app.put('/API/putRole/:name', function (req, res) {
+app.put('/API/roles/putRole/:name', function (req, res) {
     let data = req.body;
     
     let original = {
