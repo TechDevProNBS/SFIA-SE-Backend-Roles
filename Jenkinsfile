@@ -10,8 +10,8 @@ pipeline {
 	}
             steps {
             echo "Testing"
-		sh 'docker --version'
-		sh 'docker image list'
+		sh 'source /home/manager/terraform-azure/init.sh'
+		sh 'cp /home/manager/terraform-azure src/'
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
 		sh 'docker image build --build-arg ENVIRON1="testing" -t="51.140.99.70:5000/sfia-roles:testing" .'
                 sh 'docker push 51.140.99.70:5000/sfia-roles:testing'
