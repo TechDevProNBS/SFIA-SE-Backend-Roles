@@ -27,6 +27,7 @@ pipeline {
 	}
             steps {
 		echo "staging"
+		sh 'cp /home/manager/terraform-azure/config.json src/'
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
 		sh 'docker image build --build-arg ENVIRON1="staging" -t="51.140.99.70:5000/sfia-roles:staging" .'
                 sh 'docker push 51.140.99.70:5000/sfia-roles:staging' 
@@ -43,6 +44,7 @@ pipeline {
 	}
             steps {
 		echo "production"
+		sh 'cp /home/manager/terraform-azure/config.json src/'
 		sh '. /home/manager/terraform-azure/ansible/ENV_VARIABLES.sh'
                 sh 'docker image build --build-arg ENVIRON1="production" -t="51.140.99.70:5000/sfia-roles:production" .'
                 sh 'docker push 51.140.99.70:5000/sfia-roles:production' 
